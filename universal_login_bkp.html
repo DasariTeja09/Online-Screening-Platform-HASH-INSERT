@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>HashInsert | Authentication</title>
+  <!-- <link rel="stylesheet" href="/build/tailwind.css" type="text/css" media="screen" title="no title" charset="utf-8" /> -->
+  <style>
+    /*! tailwindcss v2.2.7 | MIT License | https://tailwindcss.com *//*! modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize */*,::after,::before{box-sizing:border-box}html{-moz-tab-size:4;-o-tab-size:4;tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji'}code{font-family:ui-monospace,SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace;font-size:1em}button,input{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button{text-transform:none}[type=button],button{-webkit-appearance:button}h2{margin:0}button{background-color:transparent;background-image:none}html{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";line-height:1.5}body{font-family:inherit;line-height:inherit}*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:currentColor}img{border-style:solid}input::-moz-placeholder{opacity:1;color:#9ca3af}input:-ms-input-placeholder{opacity:1;color:#9ca3af}input::placeholder{opacity:1;color:#9ca3af}button{cursor:pointer}h2{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}button,input{padding:0;line-height:inherit;color:inherit}code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}img,svg{display:block;vertical-align:middle}img{max-width:100%;height:auto}[hidden]{display:none}*,::after,::before{--tw-border-opacity:1;border-color:rgba(229,231,235,var(--tw-border-opacity))}[type=email],[type=password]{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:#fff;border-color:#6b7280;border-width:1px;border-radius:0;padding-top:.5rem;padding-right:.75rem;padding-bottom:.5rem;padding-left:.75rem;font-size:1rem;line-height:1.5rem}[type=email]:focus,[type=password]:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty, );/*!*//*!*/--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000);border-color:#2563eb}input::-moz-placeholder{color:#6b7280;opacity:1}input:-ms-input-placeholder{color:#6b7280;opacity:1}input::placeholder{color:#6b7280;opacity:1}.container{width:100%}@media (min-width:640px){.container{max-width:640px}}@media (min-width:768px){.container{max-width:768px}}@media (min-width:1024px){.container{max-width:1024px}}@media (min-width:1280px){.container{max-width:1280px}}@media (min-width:1536px){.container{max-width:1536px}}.relative{position:relative}.mx-auto{margin-left:auto;margin-right:auto}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}.mt-10{margin-top:2.5rem}.mt-12{margin-top:3rem}.mr-2{margin-right:.5rem}.flex{display:flex}.inline-flex{display:inline-flex}.hidden{display:none}.h-16{height:4rem}.h-screen{height:100vh}.w-5{width:1.25rem}.w-5\/6{width:83.333333%}.w-full{width:100%}.max-w-xs{max-width:20rem}.flex-1{flex:1 1 0%}.transform{--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;transform:translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:scale-110:hover{--tw-scale-x:1.1;--tw-scale-y:1.1}@-webkit-keyframes spin{to{transform:rotate(360deg)}}@keyframes spin{to{transform:rotate(360deg)}}@-webkit-keyframes ping{100%,75%{transform:scale(2);opacity:0}}@keyframes ping{100%,75%{transform:scale(2);opacity:0}}@-webkit-keyframes pulse{50%{opacity:.5}}@keyframes pulse{50%{opacity:.5}}@-webkit-keyframes bounce{0%,100%{transform:translateY(-25%);-webkit-animation-timing-function:cubic-bezier(.8,0,1,1);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:none;-webkit-animation-timing-function:cubic-bezier(0,0,.2,1);animation-timing-function:cubic-bezier(0,0,.2,1)}}@keyframes bounce{0%,100%{transform:translateY(-25%);-webkit-animation-timing-function:cubic-bezier(.8,0,1,1);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:none;-webkit-animation-timing-function:cubic-bezier(0,0,.2,1);animation-timing-function:cubic-bezier(0,0,.2,1)}}.cursor-pointer{cursor:pointer}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem * var(--tw-space-y-reverse))}.self-center{align-self:center}.rounded{border-radius:.25rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-gray-300{--tw-border-opacity:1;border-color:rgba(209,213,219,var(--tw-border-opacity))}.border-red-400{--tw-border-opacity:1;border-color:rgba(248,113,113,var(--tw-border-opacity))}.focus\:border-indigo-500:focus{--tw-border-opacity:1;border-color:rgba(99,102,241,var(--tw-border-opacity))}.bg-red-100{--tw-bg-opacity:1;background-color:rgba(254,226,226,var(--tw-bg-opacity))}.bg-indigo-100{--tw-bg-opacity:1;background-color:rgba(224,231,255,var(--tw-bg-opacity))}.bg-indigo-500{--tw-bg-opacity:1;background-color:rgba(99,102,241,var(--tw-bg-opacity))}.hover\:bg-gray-400:hover{--tw-bg-opacity:1;background-color:rgba(156,163,175,var(--tw-bg-opacity))}.hover\:bg-indigo-600:hover{--tw-bg-opacity:1;background-color:rgba(79,70,229,var(--tw-bg-opacity))}.p-4{padding:1rem}.px-4{padding-left:1rem;padding-right:1rem}.px-12{padding-left:3rem;padding-right:3rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-12{padding-top:3rem;padding-bottom:3rem}.text-center{text-align:center}.text-xs{font-size:.75rem;line-height:1rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.font-semibold{font-weight:600}.font-bold{font-weight:700}.tracking-wide{letter-spacing:.025em}.text-gray-100{--tw-text-opacity:1;color:rgba(243,244,246,var(--tw-text-opacity))}.text-gray-700{--tw-text-opacity:1;color:rgba(55,65,81,var(--tw-text-opacity))}.text-gray-800{--tw-text-opacity:1;color:rgba(31,41,55,var(--tw-text-opacity))}.text-red-700{--tw-text-opacity:1;color:rgba(185,28,28,var(--tw-text-opacity))}.text-indigo-600{--tw-text-opacity:1;color:rgba(79,70,229,var(--tw-text-opacity))}.text-indigo-900{--tw-text-opacity:1;color:rgba(49,46,129,var(--tw-text-opacity))}.hover\:text-indigo-800:hover{--tw-text-opacity:1;color:rgba(55,48,163,var(--tw-text-opacity))}*,::after,::before{--tw-shadow:0 0 #0000}.shadow-lg{--tw-shadow:0 10px 15px -3px rgba(0, 0, 0, 0.1),0 4px 6px -2px rgba(0, 0, 0, 0.05);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}*,::after,::before{--tw-ring-inset:var(--tw-empty, );/*!*//*!*/--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59, 130, 246, 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000}.duration-200{transition-duration:.2s}@media (min-width:640px){.sm\:w-96{width:24rem}.sm\:px-24{padding-left:6rem;padding-right:6rem}}@media (min-width:768px){.md\:px-48{padding-left:12rem;padding-right:12rem}}@media (min-width:1024px){.lg\:flex{display:flex}.lg\:w-1\/2{width:50%}.lg\:bg-white{--tw-bg-opacity:1;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.lg\:px-12{padding-left:3rem;padding-right:3rem}.lg\:text-left{text-align:left}}@media (min-width:1280px){.xl\:max-w-2xl{max-width:42rem}.xl\:max-w-screen-sm{max-width:640px}.xl\:px-24{padding-left:6rem;padding-right:6rem}.xl\:text-5xl{font-size:3rem;line-height:1}}
+  </style>  
+</head>
+
+<body class>
+  <div class="lg:flex">
+    <div class="lg:w-1/2 xl:max-w-screen-sm">
+      <div class="py-12 bg-indigo-100 lg:bg-white flex justify-center lg:px-12">
+        <div class="cursor-pointer flex items-center">
+          <div>
+            <a href="https://www.hashinsert.com/">
+            	<img class="h-16" alt="practal"
+              	src="https://ik.imagekit.io/vserdame/hash_insert_IglJaDuig.png" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <h2 id="welcome-title" class="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
+                    xl:text-bold mt-4 px-12 sm:px-24 md:px-48 lg:px-12 xl:px-24 xl:max-w-2xl">Sign up</h2>
+      <div class="hidden text-center text-gray-700" id="forgot-contents"></div>
+      <div id="container" class="px-12 sm:px-24 md:px-48 lg:px-12 xl:px-24 xl:max-w-2xl">
+
+
+
+        <div class="mt-12">
+
+
+          <div class="hidden
+                          bg-red-100
+                          border border-red-400
+                          text-red-700
+                          px-4
+                          py-3
+                          rounded
+                          relative
+                          w-38
+                          sm:w-96
+                          error-message">
+          </div>
+
+          <form>
+            <div id="email-group">
+              <div class="text-sm font-bold text-gray-700 tracking-wide">Email Address</div>
+              <input id="email"
+                class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type=""
+                placeholder="mike@gmail.com">
+            </div>
+            <div id="password-group" class="mt-8">
+              <div class="flex justify-between items-center">
+                <div class="text-sm font-bold text-gray-700 tracking-wide">
+                  Password
+                </div>
+                <div>
+                  <button id="forgotswitcher" class="text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800
+                                        cursor-pointer">
+                    Forgot Password?
+                  </button>
+                </div>
+              </div>
+              <input id="password"
+                class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type=""
+                placeholder="Enter your password">
+            </div>
+            <div class="mt-10">
+              <button id="btn-login" class="bg-indigo-500 text-gray-100 p-4 w-full tracking-wide
+                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
+                                shadow-lg">
+                Log In
+              </button>
+              <button id="btn-signup" class="hidden bg-indigo-500 text-gray-100 p-4 w-full tracking-wide
+                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
+                                shadow-lg">
+                Create Account
+              </button>
+            </div>
+            <div class="self-center space-y-3 mt-4" id="auth-provider-group">
+              <button type="button" id="btn-google" class="text-gray-800
+                               border-gray-300
+                                p-4 w-full tracking-wide
+                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-gray-400
+                                shadow-lg
+                                inline-flex
+                                justify-center
+                                items-center
+                            ">
+                <img
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4="
+                  class="w-5 mr-2" />
+                Sign In with Google
+              </button>
+            </div>
+            <button type="button" id="btn-forgot" class="
+                                hidden
+                                bg-indigo-500 text-gray-100 p-4 w-full tracking-wide
+                                font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
+                                shadow-lg
+                              ">
+              Lookup
+            </button>
+            <div class="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
+              <span id="account-exists-title" class="">Already have an account? </span>
+              <span id="account-not-exists-title" class="hidden">Don't have an account? </span>
+              <a id="registerSwitcher" class="hidden cursor-pointer text-indigo-600 hover:text-indigo-800">Sign up</a>
+              <a id="loginSwitcher" class="cursor-pointer text-indigo-600 hover:text-indigo-800">Sign in</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="hidden lg:flex items-center justify-center bg-indigo-100 flex-1 h-screen">
+      <div class="max-w-xs transform duration-200 hover:scale-110 cursor-pointer">
+        <svg class="w-5/6 mx-auto" xmlns="http://www.w3.org/2000/svg" id="f080dbb7-9b2b-439b-a118-60b91c514f72"
+          data-name="Layer 1" viewBox="0 0 528.71721 699.76785">
+          <title>Login</title>
+          <rect y="17.06342" width="444" height="657" fill="#535461" />
+          <polygon points="323 691.063 0 674.063 0 17.063 323 0.063 323 691.063" fill="#7f9cf5" />
+          <circle cx="296" cy="377.06342" r="4" fill="#535461" />
+          <polygon
+            points="296 377.66 298.773 382.463 301.545 387.265 296 387.265 290.455 387.265 293.227 382.463 296 377.66"
+            fill="#535461" />
+          <polygon points="337 691.063 317.217 691 318 0.063 337 0.063 337 691.063" fill="#7f9cf5" />
+          <g opacity="0.1">
+            <polygon points="337.217 691 317.217 691 318.217 0 337.217 0 337.217 691" fill="#fff" />
+          </g>
+          <circle cx="296" cy="348.06342" r="13" opacity="0.1" />
+          <circle cx="296" cy="346.06342" r="13" fill="#535461" />
+          <line x1="52.81943" y1="16.10799" x2="52.81943" y2="677.15616" fill="none" stroke="#000"
+            stroke-miterlimit="10" stroke-width="2" opacity="0.1" />
+          <line x1="109.81943" y1="12.10799" x2="109.81943" y2="679.15616" fill="none" stroke="#000"
+            stroke-miterlimit="10" stroke-width="2" opacity="0.1" />
+          <line x1="166.81943" y1="9.10799" x2="166.81943" y2="683" fill="none" stroke="#000" stroke-miterlimit="10"
+            stroke-width="2" opacity="0.1" />
+          <line x1="223.81943" y1="6.10799" x2="223.81943" y2="687.15616" fill="none" stroke="#000"
+            stroke-miterlimit="10" stroke-width="2" opacity="0.1" />
+          <line x1="280.81943" y1="3.10799" x2="280.81943" y2="688" fill="none" stroke="#000" stroke-miterlimit="10"
+            stroke-width="2" opacity="0.1" />
+          <ellipse cx="463.21721" cy="95.32341" rx="39.5" ry="37" fill="#2f2e41" />
+          <path d="M683.8586,425.93948l-10,14s-48,10-30,25,44-14,44-14l14-18Z"
+            transform="translate(-335.6414 -100.11607)" fill="#ffb8b8" />
+          <path d="M735.8586,266.93948s-13,0-16,18-6,78-6,78-42,55-35,62,15,20,20,18,48-61,48-61Z"
+            transform="translate(-335.6414 -100.11607)" fill="#7f9cf5" />
+          <path d="M735.8586,266.93948s-13,0-16,18-6,78-6,78-42,55-35,62,15,20,20,18,48-61,48-61Z"
+            transform="translate(-335.6414 -100.11607)" opacity="0.1" />
+          <path d="M775.8586,215.93948s-1,39-13,41-8,15-8,15,39,23,65,0l5-12s-18-13-10-31Z"
+            transform="translate(-335.6414 -100.11607)" fill="#ffb8b8" />
+          <path
+            d="M708.8586,455.93948s-59,110-37,144,55,104,60,104,33-14,31-23-32-76-40-82-4-22-3-23,34-54,34-54-1,84,3,97-1,106,4,110,28,11,32,5,16-97,8-118l15-144Z"
+            transform="translate(-335.6414 -100.11607)" fill="#2f2e41" />
+          <path d="M762.8586,722.93948l-25,46s-36,26-11,30,40-6,40-6l22-16v-46Z"
+            transform="translate(-335.6414 -100.11607)" fill="#2f2e41" />
+          <path
+            d="M728.8586,696.93948l13,31s5,13,0,16-19,21-10,23a29.29979,29.29979,0,0,0,5.49538.5463,55.56592,55.56592,0,0,0,40.39768-16.43936l8.10694-8.10694s-27.77007-63.94827-27.385-63.47414S728.8586,696.93948,728.8586,696.93948Z"
+            transform="translate(-335.6414 -100.11607)" fill="#2f2e41" />
+          <circle cx="465.21721" cy="105.82341" r="34" fill="#ffb8b8" />
+          <path
+            d="M820.3586,253.43948l-10.5,10.5s-32,12-47,0c0,0,5.5-11.5,5.5-10.5s-43.5,7.5-47.5,25.5,3,49,3,49-28,132-17,135,114,28,113,9,8-97,8-97l35-67s-5-22-17-29S820.3586,253.43948,820.3586,253.43948Z"
+            transform="translate(-335.6414 -100.11607)" fill="#7f9cf5" />
+          <path d="M775.8586,448.93948l-13,8s-50,34-24,40,41-24,41-24l10-12Z"
+            transform="translate(-335.6414 -100.11607)" fill="#ffb8b8" />
+          <path
+            d="M849.8586,301.93948l9,9s6,84-6,101-67,63-70,60-22-18-18-20,57.18287-57.56942,57.18287-57.56942l-4.18287-77.43058Z"
+            transform="translate(-335.6414 -100.11607)" opacity="0.1" />
+          <path
+            d="M853.8586,298.93948l9,9s6,84-6,101-67,63-70,60-22-18-18-20,57.18287-57.56942,57.18287-57.56942l-4.18287-77.43058Z"
+            transform="translate(-335.6414 -100.11607)" fill="#7f9cf5" />
+          <path
+            d="M786.797,157.64461s-11.5575-4.20273-27.31774,4.72807l8.40546,2.10136s-12.60819,1.05068-14.18421,17.8616h5.77875s-3.67739,14.70955,0,18.91228l2.364-4.4654,6.82943,13.65887,1.576-6.82944,3.15205,1.05069,2.10137-11.03217s5.25341,7.88012,9.45614,8.40546V195.2065s11.5575,13.13352,15.23489,12.60818l-5.25341-7.35477,7.35477,1.576-3.152-5.25341,18.91228,5.25341-4.20273-5.25341,13.13352,4.20273,6.3041,2.6267s8.9308-20.4883-3.67739-34.67251S798.61712,151.60318,786.797,157.64461Z"
+            transform="translate(-335.6414 -100.11607)" fill="#2f2e41" />
+        </svg>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <script src="https://cdn.auth0.com/js/auth0/9.16/auth0.min.js"></script>
+  <script src="https://cdn.auth0.com/js/polyfills/1.0/object-assign.min.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      const config = JSON.parse(
+        decodeURIComponent(escape(window.atob("@@config@@")))
+      );
+      const LOGIN_TITLE = "Log in";
+      const SIGNUP_TITLE = "Sign up";
+      const FORGOT_PASSWORD_TITLE = "Forgot Password";
+
+      function toggleElement({ el, hide = true, customClass = "" } = {}) {
+        console.log(el);
+        const elementClass = el.classList;
+
+        if (hide) {
+          elementClass.add("hidden");
+          return;
+        }
+
+        el.classList.remove("hidden");
+      }
+
+      function setWelcomeTitle(title) {
+        document.getElementById("welcome-title").innerHTML = title;
+      }
+
+      function toggleForgotPasswordElements(hide = true) {
+        toggleElement({
+          el: document.getElementById("password-group"),
+          hide,
+        });
+        toggleElement({
+          el: document.getElementById("auth-provider-group"),
+          hide,
+        });
+        toggleElement({
+          el: document.getElementById("btn-forgot"),
+          hide: !hide,
+        });
+        toggleElement({
+          el: document.getElementById("forgot-contents"),
+        });
+        document.getElementById("forgot-contents").innerHTML = "";
+      }
+
+      function clearForm() {
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+      }
+
+      document
+        .getElementById("registerSwitcher")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          clearErrors();
+          clearForm();
+
+          toggleElement({
+            el: document.getElementById("container"),
+            hide: false,
+          });
+
+          toggleElement({ el: document.getElementById("btn-login") });
+          toggleElement({ el: document.getElementById("forgotswitcher") });
+
+          toggleElement({
+            el: document.getElementById("loginSwitcher"),
+            hide: false,
+          });
+          toggleElement({ el: document.getElementById("registerSwitcher") });
+          toggleElement({
+            el: document.getElementById("btn-signup"),
+            hide: false,
+          });
+
+          toggleForgotPasswordElements(false);
+          toggleElement({
+            el: document.getElementById("account-exists-title"),
+            hide: false,
+          });
+
+          toggleElement({
+            el: document.getElementById("account-not-exists-title"),
+            hide: true,
+          }); 
+
+          setWelcomeTitle(SIGNUP_TITLE);
+        });
+
+      document
+        .getElementById("loginSwitcher")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          clearErrors();
+          clearForm();
+          toggleElement({
+            el: document.getElementById("container"),
+            hide: false,
+          });
+
+          toggleElement({ el: document.getElementById("btn-signup") });
+          toggleElement({ el: document.getElementById("loginSwitcher") });
+          toggleElement({
+            el: document.getElementById("forgotswitcher"),
+            hide: false,
+          });
+
+          toggleElement({
+            el: document.getElementById("registerSwitcher"),
+            hide: false,
+          });
+          toggleElement({
+            el: document.getElementById("btn-login"),
+            hide: false,
+          });
+
+          toggleForgotPasswordElements(false);
+
+          toggleElement({
+            el: document.getElementById("account-exists-title"),
+            hide: true,
+          });
+
+          toggleElement({
+            el: document.getElementById("account-not-exists-title"),
+            hide: false,
+          });
+
+          setWelcomeTitle(LOGIN_TITLE);
+        });
+      document
+        .getElementById("forgotswitcher")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          clearErrors();
+          clearForm();
+          setWelcomeTitle(FORGOT_PASSWORD_TITLE);
+          toggleElement({
+            el: document.getElementById("container"),
+            hide: false,
+          });
+
+          toggleElement({
+            el: document.getElementById("btn-login"),
+          });
+          toggleElement({
+            el: document.getElementById("btn-signup"),
+          });
+          toggleForgotPasswordElements(true);
+
+          toggleElement({
+            el: document.getElementById("account-exists-title"),
+            hide: true,
+          });
+
+          toggleElement({
+            el: document.getElementById("account-not-exists-title"),
+            hide: true,
+          }); 
+
+          toggleElement({
+            el: document.getElementById("registerSwitcher"),
+            hide: true,
+          });
+          
+          toggleElement({
+            el: document.getElementById("loginSwitcher"),
+            hide: true,
+          });
+        });
+
+      if (config && "internalOptions" in config) {
+        var leeway = config.internalOptions.leeway;
+        if (leeway) {
+          var convertedLeeway = parseInt(leeway);
+
+          if (!isNaN(convertedLeeway)) {
+            config.internalOptions.leeway = convertedLeeway;
+          }
+        }
+      }
+
+      var params = Object.assign(
+        {
+          overrides: {
+            __tenant: config.auth0Tenant,
+            __token_issuer: config.authorizationServer.issuer,
+          },
+          domain: config.auth0Domain,
+          clientID: config.clientID,
+          redirectUri: config.callbackURL,
+          responseType: "code",
+        },
+        config.internalOptions
+      );
+
+      const webAuth = new auth0.WebAuth(params);
+      const databaseConnection = "Username-Password-Authentication";
+      const captcha = webAuth.renderCaptcha(
+        document.querySelector(".captcha-container")
+      );
+
+      function login(e) {
+        e.preventDefault();
+        clearErrors();
+        const button = this;
+        const username = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        button.disabled = true;
+        webAuth.login(
+          {
+            realm: databaseConnection,
+            username: username,
+            password: password,
+            captcha: captcha.getValue(),
+          },
+          function (err) {
+            if (err) displayError(err);
+            button.disabled = false;
+          }
+        );
+      }
+
+      function forgotpassword(e) {
+        e.preventDefault();
+        clearErrors();
+        const button = this;
+        const email = document.getElementById("email").value;
+        button.disabled = true;
+        webAuth.changePassword(
+          {
+            connection: databaseConnection,
+            email: email,
+            captcha: captcha.getValue(),
+          },
+          function (err, resp) {
+            if (err) {
+              if (err) displayError(err);
+            } else {
+              toggleElement({ el: document.getElementById("container") });
+              toggleElement({
+                el: document.getElementById("forgot-contents"),
+                hide: false,
+              });
+
+              document.getElementById("forgot-contents").innerHTML = resp;
+              button.disabled = false;
+            }
+          }
+        );
+      }
+
+      function signup(e) {
+        e.preventDefault();
+        clearErrors();
+        const button = this;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        button.disabled = true;
+        webAuth.redirect.signupAndLogin(
+          {
+            connection: databaseConnection,
+            email: email,
+            password: password,
+            captcha: captcha.getValue(),
+          },
+          function (err) {
+            if (err) {
+              displayError(err);
+            } else {
+              console.error("unknown error", err);
+            }
+            button.disabled = false;
+          }
+        );
+      }
+
+      function loginWithGoogle() {
+        webAuth.authorize(
+          {
+            connection: "google-oauth2",
+          },
+          function (err) {
+            if (err) displayError(err);
+          }
+        );
+      }
+
+      function clearErrors() {
+        var errorMessage = document.getElementsByClassName("error-message");
+        for (var i = 0; i < errorMessage.length; i++) {
+          errorMessage[i].innerHTML = "";
+          errorMessage[i].classList.add("hidden");
+        }
+      }
+
+      function displayError(err) {
+        captcha.reload();
+        var errorMessage = document.getElementsByClassName("error-message");
+        for (var i = 0; i < errorMessage.length; i++) {
+          errorMessage[i].innerHTML = err.policy || err.description;
+          errorMessage[i].classList.remove("hidden");
+        }
+      }
+
+      document.getElementById("btn-login").addEventListener("click", login);
+      document
+        .getElementById("btn-google")
+        .addEventListener("click", loginWithGoogle);
+      document.getElementById("btn-signup").addEventListener("click", signup);
+      document
+        .getElementById("btn-forgot")
+        .addEventListener("click", forgotpassword);
+    });
+  </script>
+</body>
+
+</html>
